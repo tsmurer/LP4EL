@@ -1,0 +1,49 @@
+<mdc-card class="demo-card" outlined>
+  <h1 class="demo-card_heading">Sign Up</h1>
+  <mdc-list-divider></mdc-list-divider>
+  <form
+    #loginForm="ngForm"
+    action=""
+    (ngSubmit) = "register()">
+    <mdc-form-field fluid>
+      <mdc-text-field 
+      class="demo-card_input" 
+      name="name" 
+      label="Name" 
+      type='text' 
+      outlined 
+      required 
+      [(ngModel)]="model.name"
+      #username="ngModel">
+    
+      </mdc-text-field>
+    </mdc-form-field>
+    <mdc-form-field fluid>
+      <mdc-text-field 
+        class="demo-card_input" 
+        name="email" 
+        label="Email" 
+        type='email' 
+        outlined 
+        required 
+        [(ngModel)]="model.email"
+        #username="ngModel">
+    
+      </mdc-text-field>
+    </mdc-form-field>
+    <mdc-form-field fluid>
+      <mdc-text-field 
+        class="demo-card_input"
+        name="password"
+        label="Password"
+        type='password'
+        outlined
+        required
+        [(ngModel)]="model.password"
+        #password="ngModel">
+      </mdc-text-field>
+    </mdc-form-field>
+    <button mdc-button class="demo-card_button mdc-button mdc-button--unelevated">Register</button>
+    <button mdc-button="" class="demo-card_button mdc-button mdc-ripple-upgraded" tabindex="0"><div class="mdc-button__ripple" [routerLink]="['/']"></div>Cancel</button>
+  </form>
+</mdc-card>

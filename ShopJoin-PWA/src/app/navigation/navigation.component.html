@@ -1,0 +1,15 @@
+<div class="navbar">
+  <h1 class="navbar_logo">
+    <a routerLink="/">ShopJoin</a>
+  </h1>
+
+  <ul class="navbar_nav">
+    <div *ngIf="loggedIn()" class="not_logged">
+      <li><a (click)="logout()">Logout</a></li>
+    </div>
+    <div *ngIf="!loggedIn()" class="not_logged">
+      <li><a routerLink="/login">Login</a></li>
+      <li><a routerLink="/signup">Sign Up!</a></li>
+    </div>
+  </ul>
+</div>

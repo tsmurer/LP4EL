@@ -1,0 +1,22 @@
+.demo-card {
+  width: 35rem;
+  height: auto;
+  @include center(true, false);
+  padding: 3rem 2rem;
+
+  &_heading {
+    
+  }
+
+  &_input {
+    margin-top: 2rem;
+    width: 100%;
+    height: 4rem;
+  }
+
+  &_button {
+      margin: 2rem 2rem 0 0;
+      height: 4rem;
+
+  }
+}

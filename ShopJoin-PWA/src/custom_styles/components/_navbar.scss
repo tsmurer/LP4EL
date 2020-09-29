@@ -1,0 +1,38 @@
+.navbar {
+    height: 6.4rem;
+    width: 100%;
+    margin-bottom: 2rem;
+    background-color: $primary-color;
+    color: $on-primary-color;
+
+    font-size: 1.4rem;
+
+    padding: 2rem 0;
+
+    &_logo,
+    &_nav,
+    &_nav li {
+        display: inline-block;
+    }
+    
+    &_logo {
+        float: left;
+        margin-left: 2rem;
+        line-height: .75;
+        user-select: none;
+        cursor: pointer;
+    }
+
+    &_nav {
+        float: right;
+        line-height: 1.4;
+        margin-right: 2rem;
+
+        li {
+            margin: 0 2rem;
+            height: 100%;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+    }
+}

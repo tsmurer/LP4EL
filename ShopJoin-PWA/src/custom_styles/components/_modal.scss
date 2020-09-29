@@ -1,0 +1,52 @@
+.modal {
+    height: 100%;
+    width: 100%;
+
+    background-color: rgba(0, 0, 0, .4);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    &_box {
+        display: block;
+
+        //shape
+        width: 30rem;
+        height: 50rem;
+        border-radius: $b-radius;
+        padding: 3rem 2rem;
+
+
+
+        //color
+        background-color: $bg-color;
+
+        //position
+        position: relative;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        &_title {
+            width: 100%;
+            height: 7.5rem;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+
+            color: $on-bg-color;
+            
+            font-size: 2rem;
+            line-height: middle;
+
+            h3 {
+                font-weight: 300;
+            }
+        }
+
+        &_content {
+            //PREENCHER OU APAGAR REGRA
+        }
+    }
+}

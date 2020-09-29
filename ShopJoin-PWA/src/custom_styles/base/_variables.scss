@@ -1,0 +1,28 @@
+//COLORS
+
+$primary-color: #FFAA00;
+// color displayed most frequently across your app's screens and components.
+$primary-variant-color: #996600;
+$secondary-color: #00C7C7;
+//provides more ways to accent and distinguish your product.
+//Having a secondary color is optional, and should be applied sparingly to accent select parts of your UI.
+$secondary-variant-color: #007D7D;
+
+//Just like the primary color, your secondary color can have dark and light variants.
+//A color theme can use your primary color, secondary color, and dark and light variants of each color.
+
+$bg-color: #FFFFFF;
+//appears behind scrollable content. The baseline background and surface color is #FFFFFF.
+$surface-color: #FFFFFF;
+//affect surfaces of components, such as cards, sheets, and menus.
+$error-color: #B00020;
+//Error color indicates errors in components, such as invalid text in a text field. The baseline error color is #B00020.
+$on-primary-color:#FFFFFF;
+$on-secondary-color:#FFFFFF;
+$on-bg-color: #000000;
+$on-surface-color: #000000;
+$on-error-color: #FFFFFF;
+
+//MEASURES
+//border-radius
+$b-radius: 5px;
