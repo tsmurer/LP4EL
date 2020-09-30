@@ -1,0 +1,65 @@
+.homepage {
+    // shape
+    height: 100vh;
+    width: 100%;
+
+    // colour
+    background-color: $primary-color;
+    clip-path: ellipse(100% 61% at 50% 23%);
+
+    // position
+    position: absolute;
+    top: 0;
+    z-index: -1;
+
+    
+    &_content {
+        @media (max-width: 768px) {
+            width: 100%;
+        }
+
+        width: 50%;
+        height: auto;
+
+        display: flex;
+        align-items: baseline;
+
+        // position
+        position: relative;
+        top: 15rem;
+        left: 2rem;
+        padding-right: 2rem;
+        
+
+        &_heading {
+            display: inline-block;
+            height: 100%;
+            width: auto;
+            
+            color: #ffffff;
+            font-size: 3rem;
+
+            &_btns {
+
+                margin: 2rem 0 0 0;
+                display: flex;
+                width: 100%;
+                justify-content: flex-start;
+
+                & button {
+                    font-size: large;
+                    background-color: $secondary-color !important;
+                    color: #ffffff !important;
+                    margin-right: 4rem;
+                }
+            }
+
+        }
+
+        &_button {
+            &-1 {
+                background-color: $secondary-color;
+            }
+        }
+    }
+}

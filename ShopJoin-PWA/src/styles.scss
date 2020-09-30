@@ -10,9 +10,11 @@
 
 @import 'custom_styles/base/mixins';
 @import 'custom_styles/base/reset';
-@import 'custom_styles/base/variables';
 @import 'custom_styles/base/typography';
+@import 'custom_styles/base/variables';
 
+
+@import 'custom_styles/components/homepage';
 @import 'custom_styles/components/inputs';
 @import 'custom_styles/components/login-signup-card';
 @import 'custom_styles/components/modal';

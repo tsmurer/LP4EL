@@ -12,8 +12,10 @@ import { SignupComponent } from './signup/signup.component';
 import { CustomMdcModule } from './mdc.module';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './_services/auth.service';
+import { HomepageComponent } from './homepage/homepage.component';
 
 const appRoutes: Routes = [
+   { path: '', component: HomepageComponent},
    { path: 'login', component: LoginComponent },
    { path: 'signup', component: SignupComponent}
 ];
@@ -25,6 +27,7 @@ const appRoutes: Routes = [
       NavigationComponent,
       LoginComponent,
       SignupComponent,
+      HomepageComponent,
    ],
    imports: [
       BrowserModule,

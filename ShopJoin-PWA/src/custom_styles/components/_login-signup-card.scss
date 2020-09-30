@@ -1,12 +1,8 @@
 .demo-card {
   width: 35rem;
   height: auto;
-  @include center(true, false);
+  @include center(true, true);
   padding: 3rem 2rem;
-
-  &_heading {
-    
-  }
 
   &_input {
     margin-top: 2rem;
