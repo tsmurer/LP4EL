@@ -5,34 +5,30 @@
     #loginForm="ngForm"
     action=""
     (ngSubmit) = "login()">
-    <mdc-form-field fluid>
-      <mdc-text-field 
+      <input 
         class="demo-card_input" 
         name="email" 
         label="Email" 
         type='email' 
+        placeholder="email"
         outlined 
         required 
         [(ngModel)]="model.email"
         #username="ngModel">
     
-      </mdc-text-field>
-    </mdc-form-field>
-    <mdc-form-field fluid>
-      <mdc-text-field 
+      <input 
         class="demo-card_input"
         name="password"
         label="Password"
         type='password'
+        placeholder="senha"
         outlined
         required
         [(ngModel)]="model.password"
         #password="ngModel">
-      </mdc-text-field>
-    </mdc-form-field>
     <div class="demo-card__buttons">
-      <button mdc-button class="demo-card_button mdc-button mdc-button--unelevated">Login</button>
-      <button mdc-button="" class="demo-card_button mdc-button mdc-ripple-upgraded" tabindex="0"><div class="mdc-button__ripple" [routerLink]="['/signup']"></div>Sign Up</button>
+      <button class="demo-card_button">Login</button>
+      <button class="demo-card_button" [routerLink]="['/signup']">Sign Up</button>
     </div>
     
   </form>
