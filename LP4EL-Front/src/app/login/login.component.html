@@ -1,23 +1,23 @@
-<mdc-card class="demo-card" outlined>
+<div class="custom-card">
   <h1 class="demo-card_heading">Login</h1>
-  <mdc-list-divider></mdc-list-divider>
   <form
     #loginForm="ngForm"
     action=""
-    (ngSubmit) = "login()">
-      <input 
-        class="demo-card_input" 
-        name="email" 
-        label="Email" 
-        type='email' 
-        placeholder="email"
-        outlined 
-        required 
-        [(ngModel)]="model.email"
-        #username="ngModel">
+    (ngSubmit) = "login()"
+  >
+    <input 
+      class="custom-card_input" 
+      name="email" 
+      label="Email" 
+      type='email' 
+      placeholder="email"
+      outlined 
+      required 
+      [(ngModel)]="model.email"
+      #username="ngModel">
     
       <input 
-        class="demo-card_input"
+        class="custom-card_input"
         name="password"
         label="Password"
         type='password'
@@ -26,10 +26,10 @@
         required
         [(ngModel)]="model.password"
         #password="ngModel">
-    <div class="demo-card__buttons">
-      <button class="demo-card_button">Login</button>
-      <button class="demo-card_button" [routerLink]="['/signup']">Sign Up</button>
+    <div class="custom-card__buttons">
+      <button class="custom-card_button">Login</button>
+      <button class="custom-card_button" [routerLink]="['/signup']">Sign Up</button>
     </div>
     
   </form>
-</mdc-card>
+</div>

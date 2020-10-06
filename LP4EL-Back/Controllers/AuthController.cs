@@ -31,7 +31,7 @@ namespace ShopJoin.API.Controllers
             //validate request
 
             if (await _repo.UserExists(userForRegisterDto.Email))
-                return BadRequest("Email already exists"); 
+                return BadRequest("Email já está cadastrado"); 
             
             var userToCreate = new User
             {
