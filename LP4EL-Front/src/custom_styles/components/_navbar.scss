@@ -38,3 +38,14 @@
         }
     }
 }
+
+@media only screen and (max-width: 748px) {
+    .navbar_nav li {
+        font-size: 1.2rem;
+        margin: 0 1rem 0 0;
+    }
+
+    .navbar_logo {
+
+    }
+  }
