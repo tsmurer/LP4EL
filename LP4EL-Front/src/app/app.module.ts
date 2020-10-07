@@ -13,21 +13,30 @@ import { CustomMdcModule } from './mdc.module';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './_services/auth.service';
 import { HomepageComponent } from './homepage/homepage.component';
+import { HemocentrosComponent } from './hemocentros/hemocentros.component';
+import { PontosComponent } from './pontos/pontos.component';
+import { LojaComponent } from './loja/loja.component';
 
 const appRoutes: Routes = [
    { path: '', component: HomepageComponent},
+   { path: 'pontos', component: PontosComponent},
+   { path: 'loja', component: LojaComponent},
+   { path: 'hemocentros', component: HemocentrosComponent},
    { path: 'login', component: LoginComponent },
    { path: 'signup', component: SignupComponent}
 ];
 
 @NgModule({
-   declarations: [
+   declarations: [			
       AppComponent,
       UserComponent,
       NavigationComponent,
       LoginComponent,
       SignupComponent,
       HomepageComponent,
+      HemocentrosComponent,
+      PontosComponent,
+      LojaComponent
    ],
    imports: [
       BrowserModule,
