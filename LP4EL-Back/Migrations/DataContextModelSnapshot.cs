@@ -23,13 +23,23 @@ namespace ShopJoin.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Hospital")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<DateTime>("Horario")
+                        .HasColumnType("datetime(6)");
 
-                    b.Property<string>("User")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<int?>("HospitalId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Realizado")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("HospitalId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("doacoes");
                 });
@@ -57,6 +67,44 @@ namespace ShopJoin.API.Migrations
                     b.ToTable("hospitais");
                 });
 
+            modelBuilder.Entity("ShopJoin.API.Models.Produto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("Pontos")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("produtos");
+                });
+
+            modelBuilder.Entity("ShopJoin.API.Models.ProdutoResgatado", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProdutoId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProdutoId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("produtosResgatados");
+                });
+
             modelBuilder.Entity("ShopJoin.API.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -78,9 +126,34 @@ namespace ShopJoin.API.Migrations
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("longblob");
 
+                    b.Property<int>("pontos")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("users");
+                });
+
+            modelBuilder.Entity("ShopJoin.API.Models.Doacao", b =>
+                {
+                    b.HasOne("ShopJoin.API.Models.Hospital", "Hospital")
+                        .WithMany()
+                        .HasForeignKey("HospitalId");
+
+                    b.HasOne("ShopJoin.API.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("ShopJoin.API.Models.ProdutoResgatado", b =>
+                {
+                    b.HasOne("ShopJoin.API.Models.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("ProdutoId");
+
+                    b.HasOne("ShopJoin.API.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

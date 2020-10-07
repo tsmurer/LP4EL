@@ -10,32 +10,29 @@ namespace ShopJoin.API.Controllers
     [Authorize]
     [Route("[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class ProdutoController : ControllerBase
     {
         private readonly DataContext _context;
-        public UserController(DataContext context)
+        public ProdutoController(DataContext context)
         {
             _context = context;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetValues()
+        [HttpGet("lista")]
+        public async Task<IActionResult> GetProdutos()
         {
-            var data = await _context.users.ToListAsync();
+            var data = await _context.produtos.ToListAsync();
 
             return Ok(data);
-        }  
+        }
 
         [AllowAnonymous]
         [HttpGet("{id}")]
-
-        public async Task<IActionResult> GetValue(int id)
+        public async Task<IActionResult> GetProduto(int id)
         {
             var value = await _context.users.FirstOrDefaultAsync(x => x.Id == id);
 
-            return Ok(value); 
+            return Ok(value);
         }
-
     }
-
 }

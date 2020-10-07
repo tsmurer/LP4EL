@@ -51,6 +51,10 @@ namespace ShopJoin.API.Data
 
         public async Task<User> Register(User user, string password)
         {
+            if(await ValidacaoCpf(user.Cpf)){
+                throw new Exception("Cpf inválido");
+            }
+
             byte[] passwordHash, passwordSalt;
             CreatePasswordHash(password, out passwordHash, out passwordSalt);
 
@@ -70,6 +74,38 @@ namespace ShopJoin.API.Data
                 return true;
                 
             return false;
+        }
+
+        private async Task<Boolean> ValidacaoCpf(string cpf){
+            string tempCpf;
+		    string digito;
+		    int soma;
+		    int resto;
+
+           if (cpf.Length != 11)
+		     return false;
+		   tempCpf = cpf.Substring(0, 9);
+		   soma = 0;
+           
+		   for(int i=0; i<9; i++)
+		       soma += int.Parse(tempCpf[i].ToString()) * cpf[i];
+		   resto = soma % 11;
+		   if ( resto < 2 )
+		       resto = 0;
+		   else
+		      resto = 11 - resto;
+		   digito = resto.ToString();
+		   tempCpf = tempCpf + digito;
+		   soma = 0;
+		   for(int i=0; i<10; i++)
+		       soma += int.Parse(tempCpf[i].ToString()) * cpf[i];
+		   resto = soma % 11;
+		   if (resto < 2)
+		      resto = 0;
+		   else
+		      resto = 11 - resto;
+		   digito = digito + resto.ToString();
+		   return cpf.EndsWith(digito);
         }
 
     }

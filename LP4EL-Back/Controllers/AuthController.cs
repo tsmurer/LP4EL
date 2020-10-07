@@ -28,10 +28,11 @@ namespace ShopJoin.API.Controllers
 
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
-            //validate request
+            try{
+                //validate request
 
             if (await _repo.UserExists(userForRegisterDto.Email))
-                return BadRequest("Email already exists"); 
+                return BadRequest("Email já está cadastrado"); 
             
             var userToCreate = new User
             {
@@ -42,6 +43,9 @@ namespace ShopJoin.API.Controllers
             var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
             
             return StatusCode(201);
+            }catch(Exception e){
+                return BadRequest(e.Message);
+            }
         } 
 
         [HttpPost("login")]

@@ -8,7 +8,8 @@ namespace ShopJoin.API.Data
         public DbSet<User> users { get; set; }
         public DbSet<Hospital> hospitais { get; set; }
         public DbSet<Doacao> doacoes { get; set; }
-        public DbSet<Produto> doacoes { get; set; }
+        public DbSet<Produto> produtos { get; set; }
+        public DbSet<ProdutoResgatado> produtosResgatados {get; set;}
         public DataContext(DbContextOptions<DataContext> options) : base(options){}
         
     }

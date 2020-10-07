@@ -8,6 +8,7 @@ namespace ShopJoin.API.Models
         public string Name {get ; set;}
         public string Email { get; set; }
         public string Cpf { get; set; }
+        public int pontos {get; set;}
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         

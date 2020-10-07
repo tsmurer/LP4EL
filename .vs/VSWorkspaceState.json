@@ -2,10 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\LP4EL-Back",
+    "\\LP4EL-Back\\Controllers",
+    "\\LP4EL-Back\\Data",
+    "\\LP4EL-Back\\Dtos",
     "\\LP4EL-Back\\Migrations",
     "\\LP4EL-Back\\Models",
     "\\LP4EL-Back\\Properties"
   ],
-  "SelectedNode": "\\LP4EL-Back\\Models\\User.cs",
+  "SelectedNode": "\\LP4EL-Back\\appsettings.json",
   "PreviewInSolutionExplorer": false
 }
