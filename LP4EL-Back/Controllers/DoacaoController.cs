@@ -16,9 +16,10 @@ namespace ShopJoin.API.Controllers
     {
         private readonly DataContext _context;
         private readonly DoacaoRepository _repo;
-        public DoacaoController(DataContext context)
+        public DoacaoController(DoacaoRepository repo, DataContext context)
         {
             _context = context;
+            _repo = repo;
         }
 
         [HttpGet("user/{id}")]

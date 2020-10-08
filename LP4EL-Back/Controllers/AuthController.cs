@@ -37,13 +37,14 @@ namespace ShopJoin.API.Controllers
             var userToCreate = new User
             {
                 Email = userForRegisterDto.Email,
-                Name = userForRegisterDto.Name
+                Name = userForRegisterDto.Name,
+                Cpf = userForRegisterDto.Cpf
             };
 
             var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
             
-            return StatusCode(201);
-            }catch(Exception e){
+            return Ok(createdUser);
+            }catch(System.Exception e){
                 return BadRequest(e.Message);
             }
         } 
