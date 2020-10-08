@@ -9,7 +9,7 @@ using ShopJoin.API.Data;
 namespace ShopJoin.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201007151035_InitialCreate")]
+    [Migration("20201008165248_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
