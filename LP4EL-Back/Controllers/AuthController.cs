@@ -36,7 +36,8 @@ namespace ShopJoin.API.Controllers
             var userToCreate = new User
             {
                 Email = userForRegisterDto.Email,
-                Name = userForRegisterDto.Name
+                Name = userForRegisterDto.Name,
+                Cpf = userForRegisterDto.Cpf
             };
 
             var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
