@@ -56,12 +56,6 @@ namespace ShopJoin.API.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<byte[]>("PasswordHash")
-                        .HasColumnType("longblob");
-
-                    b.Property<byte[]>("PasswordSalt")
-                        .HasColumnType("longblob");
-
                     b.HasKey("Id");
 
                     b.ToTable("hospitais");
