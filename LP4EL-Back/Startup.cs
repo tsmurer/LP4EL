@@ -36,6 +36,8 @@ namespace ShopJoin.API
             services.AddMvc();
             services.AddCors();
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IProdutoResgateRepository, ProdutoResgateRepository>();
+            services.AddScoped<IDoacaoRepository, DoacaoRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
                     options.TokenValidationParameters = new TokenValidationParameters

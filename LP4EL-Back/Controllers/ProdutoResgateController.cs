@@ -8,22 +8,21 @@ using ShopJoin.API.Data;
 
 namespace ShopJoin.API.Controllers
 {
-    [Authorize]
+    // [Authorize]
     [Route("[controller]")]
     [ApiController]
     public class ProdutoResgateController : ControllerBase
     {
-        private readonly DataContext _context;
-        private readonly ProdutoResgateRepository _repo;
-        public ProdutoResgateController(DataContext context)
+        private readonly IProdutoResgateRepository _repo;
+        public ProdutoResgateController(IProdutoResgateRepository repo)
         {
-            _context = context;
+            _repo = repo;
         }
 
         [HttpGet("user/{id}")]
         public async Task<IActionResult> GetProdutosResgatadosCliente(int id)
         {
-            var data = await _context.produtosResgatados.Where(x => x.User.Id == id).ToListAsync();
+            var data = await _repo.GetProdutosResgatadosCliente(id);
 
             return Ok(data);
         }
@@ -31,7 +30,7 @@ namespace ShopJoin.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProdutosResgatado(int id)
         {
-            var data = await _context.produtosResgatados.FirstOrDefaultAsync(x => x.Id == id);
+            var data = await _repo.GetProdutosResgatado(id);
 
             return Ok(data);
         }

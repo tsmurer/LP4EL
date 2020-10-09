@@ -9,23 +9,21 @@ using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
 
 namespace ShopJoin.API.Controllers
 {
-    [Authorize]
-    [Route("[controller]")]
+    // [Authorize]
+    [Route("api/[controller]")]
     [ApiController]
     public class DoacaoController : ControllerBase
     {
-        private readonly DataContext _context;
-        private readonly DoacaoRepository _repo;
-        public DoacaoController(DoacaoRepository repo, DataContext context)
+        private readonly IDoacaoRepository _repo;
+        public DoacaoController(IDoacaoRepository repo)
         {
-            _context = context;
             _repo = repo;
         }
 
-        [HttpGet("user/{id}")]
+        [HttpGet("usuarioDoacao/{id}")]
         public async Task<IActionResult> GetDoacoesCliente(int id)
         {
-            var data = await _context.doacoes.Where(x => x.User.Id == id).ToListAsync();
+            var data = await _repo.GetDoacoesCliente(id);
 
             return Ok(data);
         }
@@ -33,17 +31,16 @@ namespace ShopJoin.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetDoacao(int id)
         {
-            var data = await _context.produtosResgatados.FirstOrDefaultAsync(x => x.Id == id);
-
+            var data = await _repo.GetDoacao(id);
             return Ok(data);
         }
 
-        [HttpPut("mudarStatus/{id}")]
-        public async Task<IActionResult> MudarStatusDoacao(int idDoacao)
+        [HttpPut("mudarStatus/{idDoacao}/{idHospital}")]
+        public async Task<IActionResult> MudarStatusDoacao(int idDoacao, int idHospital)
         {
             try
             {
-                var doacao = await _repo.AlterarStatus(idDoacao);
+                var doacao = await _repo.AlterarStatus(idDoacao, idHospital);
 
                 return Ok(doacao);
             }

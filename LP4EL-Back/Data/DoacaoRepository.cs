@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ShopJoin.API.Dtos;
@@ -6,7 +8,7 @@ using ShopJoin.API.Models;
 
 namespace ShopJoin.API.Data
 {
-    public class DoacaoRepository 
+    public class DoacaoRepository : IDoacaoRepository
     {
         private readonly DataContext _context;
         public DoacaoRepository(DataContext context)
@@ -42,16 +44,32 @@ namespace ShopJoin.API.Data
 
         }
 
-        public async Task<Doacao> AlterarStatus(int idDoacao){
+        public async Task<Doacao> AlterarStatus(int idDoacao, int idHospital){
 
             var doacao = await _context.doacoes.FirstOrDefaultAsync(x => x.Id == idDoacao);
 
             doacao.Realizado = true;
 
+            if(doacao.Hospital.Id != idHospital){
+                throw new Exception("Hospital não tem relação com essa doação.");
+            }
+
             await _context.doacoes.AddAsync(doacao);
             await _context.SaveChangesAsync();
 
             return doacao;
+
+        }
+
+        public async Task<List<Doacao>> GetDoacoesCliente(int id)
+        {
+            return await _context.doacoes.Where(x => x.User.Id == id).ToListAsync();
+
+        }
+
+        public async Task<Doacao> GetDoacao(int id)
+        {
+            return await _context.doacoes.FirstOrDefaultAsync(x => x.Id == id);
 
         }
 
