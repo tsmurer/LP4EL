@@ -4,7 +4,7 @@ namespace ShopJoin.API.Dtos
 {
     public class UserForRegisterDto
     {
-        [Required]
+        public string Tipo {get; set;}
         public string Email { get; set; }
 
         [Required]
@@ -15,6 +15,6 @@ namespace ShopJoin.API.Dtos
         public string Password { get; set; }
 
         [Required]
-        public string Cpf {get; set;}
+        public string Documento {get; set;}
     }
 }

@@ -28,43 +28,66 @@ namespace ShopJoin.API.Controllers
 
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
-            try{
+            try
+            {
                 //validate request
 
-            if (await _repo.UserExists(userForRegisterDto.Email))
-                return BadRequest("Email já está cadastrado"); 
-            
-            var userToCreate = new User
-            {
-                Email = userForRegisterDto.Email,
-                Name = userForRegisterDto.Name,
-                Cpf = userForRegisterDto.Cpf
-            };
+                if (userForRegisterDto.Tipo == "U")
+                {
 
-            var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
-            
-            return Ok(createdUser);
-            }catch(System.Exception e){
+                    _repo.UserExists(userForRegisterDto.Documento, userForRegisterDto.Email);
+
+                    var userToCreate = new User
+                    {
+                        Email = userForRegisterDto.Email,
+                        Name = userForRegisterDto.Name,
+                        Cpf = userForRegisterDto.Documento
+                    };
+                    return Ok(await _repo.Register(userToCreate, userForRegisterDto.Password));
+
+                } else{
+                    if (await _repo.HospitalExists(userForRegisterDto.Email))
+                        return BadRequest("Hospital já está cadastrado");
+
+                     var HospitalToCreate = new Hospital
+                    {
+                        Name = userForRegisterDto.Name,
+                        Cnpj = userForRegisterDto.Documento,
+                        Autorizado = false
+                    };
+
+                    return Ok(await _repo.Register(HospitalToCreate, userForRegisterDto.Password));
+                }
+
+            }
+            catch (System.Exception e)
+            {
                 return BadRequest(e.Message);
             }
-        } 
+        }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
-            var userFromRepo = await _repo.Login(userForLoginDto.Email, userForLoginDto.Password);
+            var userFromRepo = new User{};
+            var hospFromRepo = new Hospital{};
+            if(userForLoginDto.Tipo == "U"){
+                userFromRepo = await _repo.Login(userForLoginDto.Email, userForLoginDto.Password);
+            } else{
+                hospFromRepo = await _repo.LoginHospital(userForLoginDto.Documento, userForLoginDto.Password);
+            }
 
-            if (userFromRepo == null)
+            if (userFromRepo == null || hospFromRepo == null)
                 return Unauthorized();
-            
+
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
-                new Claim(ClaimTypes.Name, userFromRepo.Email)
+                new Claim(ClaimTypes.NameIdentifier, userForLoginDto.Tipo == "U" ? userFromRepo.Id.ToString() : hospFromRepo.Id.ToString()),
+                new Claim(ClaimTypes.Name, userForLoginDto.Tipo == "U" ? userFromRepo.Email : hospFromRepo.Cnpj)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
-            
+
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -75,10 +98,11 @@ namespace ShopJoin.API.Controllers
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            
+
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return Ok(new {
+            return Ok(new
+            {
                 token = tokenHandler.WriteToken(token)
             });
         }

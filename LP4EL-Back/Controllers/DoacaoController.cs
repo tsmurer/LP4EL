@@ -9,7 +9,7 @@ using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
 
 namespace ShopJoin.API.Controllers
 {
-    // [Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DoacaoController : ControllerBase
