@@ -35,7 +35,9 @@ namespace ShopJoin.API.Controllers
                 if (userForRegisterDto.Tipo == "U")
                 {
 
-                    _repo.UserExists(userForRegisterDto.Documento, userForRegisterDto.Email);
+                    if (await _repo.UserExists(userForRegisterDto.Documento, userForRegisterDto.Email)){
+                        return BadRequest("Informações do usuário incorretas");
+                    }
 
                     var userToCreate = new User
                     {
