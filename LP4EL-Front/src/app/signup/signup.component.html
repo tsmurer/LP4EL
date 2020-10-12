@@ -38,6 +38,36 @@
         required
         [(ngModel)]="model.password"
         #password="ngModel">
+
+        <input 
+        class="custom-card_input"
+        placeholder="CPF/CNPJ (só números)"
+        name="documento"
+        label="documento"
+        type='documento'
+        outlined
+        required
+        [(ngModel)]="model.documento"
+        #password="ngModel">
+
+      <div class="radio">
+        <input 
+          type="radio"
+          id="male"
+          name="tipo"
+          value="H"
+          [(ngModel)]="model.tipo"
+          >
+        <label for="male">Hemocentro</label>
+        <input
+          type="radio"
+          id="female"
+          name="tipo"
+          value="U"
+          [(ngModel)]="model.tipo"
+          >
+        <label for="male">Doador</label>
+      </div>
     <div class="custom-card__buttons">
       <button mdc-button class="custom-card_button mdc-button mdc-button--unelevated">Cadastrar</button>
       <button mdc-button="" class="custom-card_button mdc-button mdc-ripple-upgraded" tabindex="0"><div class="mdc-button__ripple" [routerLink]="['/']"></div>Cancelar</button>

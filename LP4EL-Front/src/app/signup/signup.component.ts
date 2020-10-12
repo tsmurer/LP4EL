@@ -17,10 +17,12 @@ export class SignupComponent implements OnInit {
 
   register() {
     this.authService.register(this.model).subscribe(() => {
-      console.log('registration successful');
+      alert('Registro feito com sucesso');
       this.router.navigate(['/']);
     }, error => {
       console.log(error);
+      alert('Checar informações!');
+      console.log(this.model);
     });
   }
 

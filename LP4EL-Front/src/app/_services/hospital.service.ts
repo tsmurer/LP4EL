@@ -9,7 +9,7 @@ export class HospitalService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getHemocentros(){
+  getHemocentros() {
     return this.httpClient.get(this.baseUrl);
   }
 

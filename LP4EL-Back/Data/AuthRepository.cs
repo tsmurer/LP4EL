@@ -100,14 +100,6 @@ namespace ShopJoin.API.Data
             return hospital;
         }
 
-        public async void UserExists(string cpf, string email)
-        {
-            if (await _context.users.AnyAsync(x => x.Cpf == cpf))
-                throw new Exception("Cpf já está sendo utilizado");
-
-            if (await _context.users.AnyAsync(x => x.Email == email))
-                throw new Exception("Email já está sendo utilizado");
-        }
 
         public async Task<bool> HospitalExists(string cnpj)
         {
@@ -241,6 +233,11 @@ namespace ShopJoin.API.Data
                 return false;
 
             return true;
+        }
+
+        Task<User> IAuthRepository.UserExists(string cpf, string email)
+        {
+            throw new NotImplementedException();
         }
     }
 }
