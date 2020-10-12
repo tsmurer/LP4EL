@@ -57,6 +57,17 @@ namespace ShopJoin.API.Data
             await _context.doacoes.AddAsync(doacao);
             await _context.SaveChangesAsync();
 
+            var usuario = await _context.users.FirstOrDefaultAsync(x => x.Id == doacao.User.Id);
+
+            if(usuario == null){
+                throw new Exception("Usuario não existe");
+            }
+
+            usuario.pontos = usuario.pontos + 100;
+
+            await _context.users.AddAsync(usuario);
+            await _context.SaveChangesAsync();
+
             return doacao;
 
         }
