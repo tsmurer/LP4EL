@@ -19,7 +19,7 @@ import { LojaComponent } from './loja/loja.component';
 
 const appRoutes: Routes = [
    { path: '', component: HomepageComponent},
-   { path: 'pontos', component: PontosComponent},
+   { path: 'conta', component: PontosComponent},
    { path: 'loja', component: LojaComponent},
    { path: 'hemocentros', component: HemocentrosComponent},
    { path: 'login', component: LoginComponent },
