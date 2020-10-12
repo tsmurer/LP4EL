@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/']);
     }, error => {
       //COLOCAR MENSAGEM DE FALHA DE LOGIN AQUI
+      console.log(error);
       alert("Email ou senha errados!");
     });
   }

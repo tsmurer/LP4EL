@@ -102,7 +102,7 @@ namespace ShopJoin.API.Controllers
                             userForLoginDto.Tipo));
         }
 
-        private SecurityToken CreateToken(string id, string documento, string tipo)
+        private Object CreateToken(string id, string documento, string tipo)
         {
             var claims = new[]
             {
@@ -126,7 +126,10 @@ namespace ShopJoin.API.Controllers
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return token;
+            return new
+            {
+                token = tokenHandler.WriteToken(token)
+            };
         }
     }
 }
