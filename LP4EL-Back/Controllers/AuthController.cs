@@ -35,7 +35,8 @@ namespace ShopJoin.API.Controllers
                 if (userForRegisterDto.Tipo == "U")
                 {
 
-                    if (await _repo.UserExists(userForRegisterDto.Documento, userForRegisterDto.Email)){
+                    if (await _repo.UserExists(userForRegisterDto.Documento, userForRegisterDto.Email))
+                    {
                         return BadRequest("Informações do usuário incorretas");
                     }
 
@@ -45,20 +46,31 @@ namespace ShopJoin.API.Controllers
                         Name = userForRegisterDto.Name,
                         Cpf = userForRegisterDto.Documento
                     };
-                    return Ok(await _repo.Register(userToCreate, userForRegisterDto.Password));
 
-                } else{
+                    userToCreate = await _repo.Register(userToCreate, userForRegisterDto.Password);
+
+                    return Ok(CreateToken(userToCreate.Id.ToString(),
+                                          userToCreate.Email,
+                                          "U"));
+
+                }
+                else
+                {
                     if (await _repo.HospitalExists(userForRegisterDto.Email))
                         return BadRequest("Hospital já está cadastrado");
 
-                     var HospitalToCreate = new Hospital
+                    var hospitalToCreate = new Hospital
                     {
                         Name = userForRegisterDto.Name,
                         Cnpj = userForRegisterDto.Documento,
                         Autorizado = false
                     };
 
-                    return Ok(await _repo.Register(HospitalToCreate, userForRegisterDto.Password));
+                    hospitalToCreate = await _repo.Register(hospitalToCreate, userForRegisterDto.Password);
+
+                    return Ok(CreateToken(hospitalToCreate.Id.ToString(),
+                                          hospitalToCreate.Cnpj,
+                                          "H"));
                 }
 
             }
@@ -71,21 +83,32 @@ namespace ShopJoin.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
-            var userFromRepo = new User{};
-            var hospFromRepo = new Hospital{};
-            if(userForLoginDto.Tipo == "U"){
+            var userFromRepo = new User { };
+            var hospFromRepo = new Hospital { };
+            if (userForLoginDto.Tipo == "U")
+            {
                 userFromRepo = await _repo.Login(userForLoginDto.Email, userForLoginDto.Password);
-            } else{
+            }
+            else
+            {
                 hospFromRepo = await _repo.LoginHospital(userForLoginDto.Documento, userForLoginDto.Password);
             }
 
             if (userFromRepo == null || hospFromRepo == null)
                 return Unauthorized();
 
+            return Ok(CreateToken(userForLoginDto.Tipo == "U" ? userFromRepo.Id.ToString() : hospFromRepo.Id.ToString(), 
+                        userForLoginDto.Tipo == "U" ? userFromRepo.Email : hospFromRepo.Cnpj, 
+                            userForLoginDto.Tipo));
+        }
+
+        private SecurityToken CreateToken(string id, string documento, string tipo)
+        {
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier, userForLoginDto.Tipo == "U" ? userFromRepo.Id.ToString() : hospFromRepo.Id.ToString()),
-                new Claim(ClaimTypes.Name, userForLoginDto.Tipo == "U" ? userFromRepo.Email : hospFromRepo.Cnpj)
+                new Claim(ClaimTypes.NameIdentifier, id),
+                new Claim(ClaimTypes.Name, documento),
+                new Claim(ClaimTypes.Actor, tipo)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
@@ -103,10 +126,7 @@ namespace ShopJoin.API.Controllers
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return Ok(new
-            {
-                token = tokenHandler.WriteToken(token)
-            });
+            return token;
         }
     }
 }
