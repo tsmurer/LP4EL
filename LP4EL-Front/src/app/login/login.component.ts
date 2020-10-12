@@ -10,6 +10,7 @@ import { AuthService } from '../_services/auth.service';
 export class LoginComponent implements OnInit {
 
   model: any = {};
+  tipo: any;
 
   constructor(private authService: AuthService, private router: Router) { }
 

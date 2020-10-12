@@ -35,7 +35,9 @@ namespace ShopJoin.API.Controllers
                 if (userForRegisterDto.Tipo == "U")
                 {
 
-                   await _repo.UserExists(userForRegisterDto.Documento, userForRegisterDto.Email);
+                    if (await _repo.UserExists(userForRegisterDto.Documento, userForRegisterDto.Email)){
+                        return BadRequest("Informações do usuário incorretas");
+                    }
 
                     var userToCreate = new User
                     {
@@ -53,7 +55,7 @@ namespace ShopJoin.API.Controllers
                     {
                         Name = userForRegisterDto.Name,
                         Cnpj = userForRegisterDto.Documento,
-                        Autorizado = false
+                        //Autorizado = false
                     };
 
                     return Ok(await _repo.Register(HospitalToCreate, userForRegisterDto.Password));

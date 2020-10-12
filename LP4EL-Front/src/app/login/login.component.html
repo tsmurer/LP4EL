@@ -5,7 +5,28 @@
     action=""
     (ngSubmit) = "login()"
   >
+
+    <div class="radio">
+      <input 
+        type="radio"
+        id="male"
+        name="tipo"
+        value="H"
+        [(ngModel)]="model.tipo"
+        >
+      <label for="male">Hemocentro</label>
+      <input
+        type="radio"
+        id="female"
+        name="tipo"
+        value="U"
+        [(ngModel)]="model.tipo"
+        >
+      <label for="male">Doador</label>
+    </div>
+    
     <input 
+      *ngIf="this.model.tipo == 'U'"
       class="custom-card_input" 
       name="email" 
       label="Email" 
@@ -14,6 +35,18 @@
       outlined 
       required 
       [(ngModel)]="model.email"
+      #username="ngModel">
+
+      <input 
+      *ngIf="this.model.tipo == 'H'"
+      class="custom-card_input" 
+      name="documento" 
+      label="documento" 
+      type='documento' 
+      placeholder="CNPJ"
+      outlined 
+      required 
+      [(ngModel)]="model.documento"
       #username="ngModel">
     
       <input 
@@ -26,6 +59,7 @@
         required
         [(ngModel)]="model.password"
         #password="ngModel">
+
     <div class="custom-card__buttons">
       <button class="custom-card_button">Login</button>
       <button class="custom-card_button" [routerLink]="['/signup']">Sign Up</button>

@@ -19,6 +19,8 @@ export class SignupComponent implements OnInit {
     this.authService.register(this.model).subscribe(() => {
       alert('Registro feito com sucesso');
       this.router.navigate(['/']);
+      //const loginObject = {name: this.model.name, password: this.model.password}
+
     }, error => {
       console.log(error);
       alert('Checar informações!');

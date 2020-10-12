@@ -100,6 +100,13 @@ namespace ShopJoin.API.Data
             return hospital;
         }
 
+        public async Task<bool> UserExists(string cpf, string email)
+        {
+            if (await _context.users.AnyAsync(x => x.Cpf == cpf || x.Email == email))
+                return true;
+
+            return false;
+        }
 
         public async Task<bool> HospitalExists(string cnpj)
         {
@@ -233,11 +240,6 @@ namespace ShopJoin.API.Data
                 return false;
 
             return true;
-        }
-
-        Task<User> IAuthRepository.UserExists(string cpf, string email)
-        {
-            throw new NotImplementedException();
         }
     }
 }
