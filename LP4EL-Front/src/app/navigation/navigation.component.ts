@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CheckTokenService } from '../_services/checkToken.service';
 
 @Component({
   selector: 'app-navigation',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+  tipo: String;
+
+  constructor(private checkToken: CheckTokenService) { }
 
   ngOnInit() {
+    console.log(this.checkToken.getTipo());
+    this.tipo = this.checkToken.getTipo();
   }
 
   loggedIn() {

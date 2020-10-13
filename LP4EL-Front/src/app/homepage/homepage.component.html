@@ -1,4 +1,4 @@
-<div class="homepage">
+<div *ngIf="this.tipo === 'U'" class="homepage">
     <div class="homepage__content">
         <div class="div">
             <h1>
@@ -8,7 +8,6 @@
         </div>
         <img src="../../assets/vampire-svgrepo-com.svg"/>
     </div>
-
-
-
 </div>
+
+<app-doacao></app-doacao>

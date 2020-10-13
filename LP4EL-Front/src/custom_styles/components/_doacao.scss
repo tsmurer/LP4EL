@@ -1,0 +1,10 @@
+.doacao-card {
+    padding: 2rem;
+    background-color: $primary-color;
+    @include center(true, true);
+
+    & h3 {
+        color: #fff;
+        margin-bottom: 1rem;
+    }
+}

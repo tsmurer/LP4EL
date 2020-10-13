@@ -16,6 +16,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { HemocentrosComponent } from './hemocentros/hemocentros.component';
 import { PontosComponent } from './pontos/pontos.component';
 import { LojaComponent } from './loja/loja.component';
+import { DoacaoComponent } from './doacao/doacao/doacao.component';
 
 const appRoutes: Routes = [
    { path: '', component: HomepageComponent},
@@ -27,7 +28,8 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-   declarations: [			
+   declarations: [
+      DoacaoComponent,
       AppComponent,
       UserComponent,
       NavigationComponent,

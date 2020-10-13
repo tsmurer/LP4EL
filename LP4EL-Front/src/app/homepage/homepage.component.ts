@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CheckTokenService } from '../_services/checkToken.service';
 
 @Component({
   selector: 'app-homepage',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor() { }
+  tipo;
+
+  constructor(private checkToken: CheckTokenService) { }
 
   ngOnInit(): void {
+    this.tipo = this.checkToken.getTipo();
   }
 
 }

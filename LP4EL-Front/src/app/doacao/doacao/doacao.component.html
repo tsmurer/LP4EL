@@ -1,0 +1,17 @@
+<div class="doacao-card">
+  <h3>Inserir doação</h3>
+  <form
+    #loginForm="ngForm"
+    action=""
+    (ngSubmit) = "cadastrarDoacao()">
+    <input 
+        name="email" 
+        label="Email" 
+        type='email' 
+        placeholder="email do doador"
+        outlined 
+        required 
+        [(ngModel)]="model.email"
+        #username="ngModel">
+  </form>
+</div>
