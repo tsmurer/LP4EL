@@ -21,7 +21,7 @@ import { DoacaoComponent } from './doacao/doacao/doacao.component';
 const appRoutes: Routes = [
    { path: '', component: HomepageComponent},
    { path: 'conta', component: PontosComponent},
-   { path: 'doacao', component: DoacaoComponent},
+   { path: 'atribuir', component: DoacaoComponent},
    { path: 'loja', component: LojaComponent},
    { path: 'hemocentros', component: HemocentrosComponent},
    { path: 'login', component: LoginComponent },
