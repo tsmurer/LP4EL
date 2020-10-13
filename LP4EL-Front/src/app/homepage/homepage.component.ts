@@ -8,7 +8,7 @@ import { CheckTokenService } from '../_services/checkToken.service';
 })
 export class HomepageComponent implements OnInit {
 
-  tipo;
+  tipo = null;
 
   constructor(private checkToken: CheckTokenService) { }
 

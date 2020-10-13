@@ -2,9 +2,17 @@
     padding: 2rem;
     background-color: $primary-color;
     @include center(true, true);
+    height: 20rem;
+    width: 20rem;
+    border-radius: 10px;
 
     & h3 {
         color: #fff;
         margin-bottom: 1rem;
     }
+
+}
+
+form {
+    display: block;
 }

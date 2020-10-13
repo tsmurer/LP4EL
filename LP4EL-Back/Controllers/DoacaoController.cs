@@ -5,15 +5,33 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShopJoin.API.Data;
 using ShopJoin.API.Dtos;
+using ShopJoin.API.Models;
 using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
+
 
 namespace ShopJoin.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DoacaoController : ControllerBase
     {
+
+        [HttpPost("cadastro")]
+        public async Task<IActionResult> CadastrarDoacao(DoacaoCadastroDto doacaoDto)
+        {
+            try
+            {
+                var doacao = await _repo.CadastrarDoacao(doacaoDto);
+
+                return Ok(doacao);
+            }
+            catch (System.Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+        }
         private readonly IDoacaoRepository _repo;
         public DoacaoController(IDoacaoRepository repo)
         {
@@ -51,21 +69,6 @@ namespace ShopJoin.API.Controllers
 
         }
 
-        [HttpPost("cadastro")]
-        public async Task<IActionResult> CadastrarDoacao(DoacaoCadastroDto doacaoDto)
-        {
-            try
-            {
-                var doacao = await _repo.CadastrarDoacao(doacaoDto);
-
-                return Ok(doacao);
-            }
-            catch (System.Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-
-        }
 
     }
 
