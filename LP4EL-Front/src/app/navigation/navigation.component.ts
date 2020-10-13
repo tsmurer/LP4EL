@@ -8,7 +8,7 @@ import { CheckTokenService } from '../_services/checkToken.service';
 })
 export class NavigationComponent implements OnInit {
 
-  tipo: String;
+  tipo: String = null;
 
   constructor(private checkToken: CheckTokenService) { }
 

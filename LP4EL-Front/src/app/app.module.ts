@@ -21,10 +21,11 @@ import { DoacaoComponent } from './doacao/doacao/doacao.component';
 const appRoutes: Routes = [
    { path: '', component: HomepageComponent},
    { path: 'conta', component: PontosComponent},
+   { path: 'atribuir', component: DoacaoComponent},
    { path: 'loja', component: LojaComponent},
    { path: 'hemocentros', component: HemocentrosComponent},
    { path: 'login', component: LoginComponent },
-   { path: 'signup', component: SignupComponent}
+   { path: 'signup', component: SignupComponent},
 ];
 
 @NgModule({

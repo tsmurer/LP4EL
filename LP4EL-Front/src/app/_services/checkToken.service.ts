@@ -8,6 +8,10 @@ export class CheckTokenService {
 
 constructor() { }
 
+  getId() {
+    return jwt_decode(localStorage.getItem('token')).nameid;
+  }
+
   getTipo() {
     return jwt_decode(localStorage.getItem('token')).actort;
   }
