@@ -8,7 +8,7 @@ namespace ShopJoin.API.Dtos
         [Required]
         public int IdHospital { get; set; }
         [Required]
-        public int IdUser { get; set; }
+        public string EmailUser { get; set; }
         [Required]
         public DateTime Horario { get; set; }
         public Boolean Realizado { get; set; }

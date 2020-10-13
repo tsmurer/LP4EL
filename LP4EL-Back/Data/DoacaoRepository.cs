@@ -18,13 +18,13 @@ namespace ShopJoin.API.Data
 
         public async Task<Doacao> CadastrarDoacao(DoacaoCadastroDto dto){
 
-            var usuario = await _context.users.FirstOrDefaultAsync(x => x.Id == dto.IdUser);
+            var usuario = await _context.users.FirstOrDefaultAsync(x => x.Email == dto.EmailUser);
 
             if(usuario == null){
                 throw new Exception("Usuário não encontrado");
             }
 
-            var hospital = await _context.hospitais.FirstOrDefaultAsync(x => x.Id == dto.IdUser);
+            var hospital = await _context.hospitais.FirstOrDefaultAsync(x => x.Id == dto.IdHospital);
 
             if(hospital == null){
                 throw new Exception("Hospital não encontrado");
