@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DadosUsuarioService } from '../_services/dadosUsuario.service';
 import { ProdutoService } from '../_services/produto.service';
 
 @Component({
@@ -8,12 +9,14 @@ import { ProdutoService } from '../_services/produto.service';
 })
 export class LojaComponent implements OnInit {
 
+  pontos;
   itensLista = [];
 
-  constructor(private produtoService: ProdutoService) { }
+  constructor(private produtoService: ProdutoService, private dadosUsuario: DadosUsuarioService) { }
 
   ngOnInit() {
     this.puxarProdutos();
+    this.dadosUsuario.getDados().subscribe((resp: any) => {this.pontos = resp.pontos});
   }
 
   puxarProdutos() {
