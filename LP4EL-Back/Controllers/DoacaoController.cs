@@ -1,12 +1,9 @@
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShopJoin.API.Data;
 using ShopJoin.API.Dtos;
-using ShopJoin.API.Models;
-using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
 
 
 namespace ShopJoin.API.Controllers

@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DadosUsuarioService {
+  baseUrl = 'http://localhost:5000/user';
 
-constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
 }

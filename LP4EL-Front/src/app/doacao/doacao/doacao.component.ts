@@ -16,7 +16,7 @@ export class DoacaoComponent implements OnInit {
   }
 
   cadastrarDoacao(){
-    this.model.IdHospital = this.checkToken.getId();
+    this.model.IdHospital = parseInt(this.checkToken.getId());
     this.model.Horario = new Date().toJSON("yyyy/MM/dd HH:mm");
     this.model.Realizado = true;
     this.doacaoService.cadastrarDoacao(this.model).subscribe(() => {
