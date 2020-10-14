@@ -1,10 +1,10 @@
 <div class="loja">
   <h1>Loja</h1>
-  <h2>Você tem pontos</h2>
+  <h2>Você tem {{this.pontos}} pontos</h2>
 </div>
 <br><br>
 <div class="itens">
-  <h1>Itens:</h1>
+  <h1 class="itensTop">Itens:</h1>
   <div class="itens__container">
     <div class="item" *ngFor="let item of itensLista">
       <img class="item__img" src="../../assets/no-image.png" alt="">
