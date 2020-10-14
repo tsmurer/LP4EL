@@ -12,11 +12,20 @@ export class LojaComponent implements OnInit {
   pontos;
   itensLista = [];
 
-  constructor(private produtoService: ProdutoService, private dadosUsuario: DadosUsuarioService) { }
+  constructor(
+    private produtoService: ProdutoService,
+    private dadosUsuario: DadosUsuarioService,
+    ) { }
 
   ngOnInit() {
     this.puxarProdutos();
     this.dadosUsuario.getDados().subscribe((resp: any) => {this.pontos = resp.pontos});
+  }
+
+  comprarProduto(idProduto) {
+    this.produtoService.resgatarProduto(idProduto).subscribe((resp: any) => {
+      alert("Produto adquirido");
+    });
   }
 
   puxarProdutos() {
