@@ -3,7 +3,7 @@ Projeto ASP.net para a matéria LP4EL, no curso de Análise e Desenvolvimento de
 Trata-se de uma aplicação não comercial para que hemocentros registrem a doação de sangue por um usuário da aplicação. O registro gera pontos para o usuário e os pontos são
 usados para, idealmente, comprar vantagens em jogos, cupons e etc.
 
-# Instruções
+## Instruções
 São necessários para executar a aplicação:
   - Angular
   - ASP.NET
