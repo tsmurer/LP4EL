@@ -46,7 +46,7 @@ namespace ShopJoin.API.Controllers
         [HttpGet("hospitalDoacao/{id}")]
         public async Task<IActionResult> GetDoacoesHospital(int id)
         {
-            var data = await _repo.GetDoacoesCliente(id);
+            var data = await _repo.GetDoacoesHospital(id);
 
             return Ok(data);
         }
