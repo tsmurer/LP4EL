@@ -32,14 +32,27 @@ namespace ShopJoin.API.Data
                 throw new Exception("Usuário não encontrado");
             }
 
-            if(user.pontos < produto.Pontos){
+            if (user.pontos < produto.Pontos)
+            {
                 throw new Exception("Usuário não tem pontos suficientes");
             }
-            
+
             user.pontos = user.pontos - produto.Pontos;
+
+            var rand = new Random();
 
             var produtoResgatado = new ProdutoResgatado
             {
+                Codigo = new string(new char[]{
+                    (char)rand.Next('A','Z'),
+                    (char)rand.Next('A', 'Z'),
+                    (char)rand.Next('0', '9'),
+                    (char)rand.Next('0', '9'),
+                    (char)rand.Next('0', '9'),
+                    (char)rand.Next('0', '9'),
+                    (char)rand.Next('A', 'Z'),
+                    (char)rand.Next('A', 'Z')
+                }),
                 Produto = produto,
                 User = user
             };

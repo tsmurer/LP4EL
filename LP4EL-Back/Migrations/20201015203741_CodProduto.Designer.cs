@@ -9,8 +9,8 @@ using ShopJoin.API.Data;
 namespace ShopJoin.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201008165248_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20201015203741_CodProduto")]
+    partial class CodProduto
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -91,6 +91,9 @@ namespace ShopJoin.API.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<string>("Codigo")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int?>("ProdutoId")
                         .HasColumnType("int");
