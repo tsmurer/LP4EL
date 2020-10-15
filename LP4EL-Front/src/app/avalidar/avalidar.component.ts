@@ -26,4 +26,10 @@ export class AvalidarComponent implements OnInit {
         )
   }
 
+  validarDoacao(doacao) {
+    if (doacao.realizado === false) {
+      this.doacaoService.validarDoacao(doacao.id).subscribe();
+    }
+  }
+
 }

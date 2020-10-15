@@ -19,4 +19,13 @@ export class DoacaoService {
     return this.http.get(
       this.baseUrl + 'hospitaldoacao/' + this.checkToken.getId());
   }
+
+  validarDoacao(idDoacao) {
+    const id = this.checkToken.getId();
+    return this.http.put(
+      this.baseUrl + 'mudarstatus/' + idDoacao + '/' + id,
+      idDoacao,
+      id
+    )
+  }
 }

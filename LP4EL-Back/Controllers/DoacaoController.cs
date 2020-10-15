@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShopJoin.API.Data;
 using ShopJoin.API.Dtos;
@@ -6,7 +7,7 @@ using ShopJoin.API.Dtos;
 
 namespace ShopJoin.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DoacaoController : ControllerBase

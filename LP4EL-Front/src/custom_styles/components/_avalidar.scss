@@ -1,6 +1,5 @@
 .lista-doacoes {
     @include center(true, true);
-    width: 60rem;
     display: block;
     background-color: $primary-color;
     padding: 1rem;
@@ -14,6 +13,7 @@
 
 table {
     width: 100%;
+    font-size: 1.2rem;
 }
 
 table, th, td {
@@ -21,4 +21,30 @@ table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
     text-align: center;
+}
+
+
+@media screen and (max-width: 748px) {
+    .homepage__content {
+        flex-direction: column;
+
+        & img {
+            display: none;
+        }
+
+        & h1 {
+            max-width: 80%;
+        }
+    }
+
+}
+
+@media screen and (min-width: 748px) {
+    .lista-doacoes{width: 60rem;}
+
+}
+
+span {
+    display: inline-block;
+    cursor: pointer;
 }
