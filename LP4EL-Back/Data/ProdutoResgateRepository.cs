@@ -32,7 +32,11 @@ namespace ShopJoin.API.Data
                 throw new Exception("Usuário não encontrado");
             }
 
-            int quantidade = await _context.produtosResgatados.CountAsync();
+            if(user.pontos < produto.Pontos){
+                throw new Exception("Usuário não tem pontos suficientes");
+            }
+            
+            user.pontos = user.pontos - produto.Pontos;
 
             var produtoResgatado = new ProdutoResgatado
             {
@@ -41,6 +45,9 @@ namespace ShopJoin.API.Data
             };
 
             await _context.produtosResgatados.AddAsync(produtoResgatado);
+            await _context.SaveChangesAsync();
+
+            await _context.users.AddAsync(user);
             await _context.SaveChangesAsync();
 
             return produtoResgatado;
