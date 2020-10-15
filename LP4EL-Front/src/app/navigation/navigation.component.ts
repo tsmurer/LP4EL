@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CheckTokenService } from '../_services/checkToken.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class NavigationComponent implements OnInit {
 
   tipo: String = null;
 
-  constructor(private checkToken: CheckTokenService) { }
+  constructor(private checkToken: CheckTokenService, private router: Router) { }
 
   ngOnInit() {
     console.log(this.checkToken.getTipo());
@@ -24,6 +25,7 @@ export class NavigationComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token');
+    this.router.navigateByUrl('/');
     console.log('logged out successfully');
   }
 }

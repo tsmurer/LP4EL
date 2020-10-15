@@ -1,0 +1,6 @@
+.lista-doacoes {
+    @include center(true, true);
+    height: 100px;
+    width 50px;
+    background-color: $color-primary;
+}

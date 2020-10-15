@@ -8,6 +8,7 @@
     <div *ngIf="loggedIn()" class="not_logged">
       <li *ngIf="this.tipo === 'U'"><a routerLink="/loja">Loja</a></li>
       <li *ngIf="this.tipo === 'U'"><a routerLink="/conta">Minha Conta</a></li>
+      <li *ngIf="this.tipo === 'H'"><a routerLink="/avalidar">Doações a validar</a></li>
       <li *ngIf="this.tipo === 'H'"><a routerLink="/atribuir">Atribuir doação</a></li>
       <li><a (click)="logout()">Sair</a></li>
     </div>
