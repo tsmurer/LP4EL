@@ -8,5 +8,7 @@ namespace ShopJoin.API.Models
         public Produto Produto { get; set; }
         public User User { get; set; }
 
+        public string Codigo {get; set;}
+
     }
 }

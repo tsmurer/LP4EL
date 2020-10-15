@@ -1,14 +1,11 @@
-using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ShopJoin.API.Data;
 
 namespace ShopJoin.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("[controller]")]
     [ApiController]
     public class ProdutoResgateController : ControllerBase
@@ -35,7 +32,7 @@ namespace ShopJoin.API.Controllers
             return Ok(data);
         }
 
-        [HttpPost]
+        [HttpPost("{idProduto}/{idUsuario}")]
         public async Task<IActionResult> ResgatarProduto(int idProduto, int idUsuario)
         {
             try
@@ -44,7 +41,7 @@ namespace ShopJoin.API.Controllers
 
                 return StatusCode(201);
             }
-            catch (Exception e)
+            catch (System.Exception e)
             {
                 return BadRequest(e.Message);
             }

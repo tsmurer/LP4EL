@@ -29,8 +29,13 @@ export class LojaComponent implements OnInit {
     });
   }
 
-  comprarProduto(){
-    alert("foi!");
+  comprarProduto(pontos){
+    if(this.pontos < pontos){
+      alert("Seu saldo é insuficiente!");
+    }else{
+      alert("Você comprou o item!");
+    }
+      
   }
 
 }

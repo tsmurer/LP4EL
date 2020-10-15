@@ -17,9 +17,11 @@ import { HemocentrosComponent } from './hemocentros/hemocentros.component';
 import { PontosComponent } from './pontos/pontos.component';
 import { LojaComponent } from './loja/loja.component';
 import { DoacaoComponent } from './doacao/doacao/doacao.component';
+import { AvalidarComponent } from './avalidar/avalidar.component';
 
 const appRoutes: Routes = [
    { path: '', component: HomepageComponent},
+   { path: 'avalidar', component: AvalidarComponent },
    { path: 'conta', component: PontosComponent},
    { path: 'atribuir', component: DoacaoComponent},
    { path: 'loja', component: LojaComponent},
@@ -29,7 +31,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-   declarations: [
+   declarations: [	
       DoacaoComponent,
       AppComponent,
       UserComponent,
@@ -39,7 +41,8 @@ const appRoutes: Routes = [
       HomepageComponent,
       HemocentrosComponent,
       PontosComponent,
-      LojaComponent
+      LojaComponent,
+      AvalidarComponent
    ],
    imports: [
       BrowserModule,

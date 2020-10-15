@@ -32,15 +32,34 @@ namespace ShopJoin.API.Data
                 throw new Exception("Usuário não encontrado");
             }
 
-            int quantidade = await _context.produtosResgatados.CountAsync();
+            if (user.pontos < produto.Pontos)
+            {
+                throw new Exception("Usuário não tem pontos suficientes");
+            }
+
+            user.pontos = user.pontos - produto.Pontos;
+
+            var rand = new Random();
 
             var produtoResgatado = new ProdutoResgatado
             {
+                Codigo = new string(new char[]{
+                    (char)rand.Next('A','Z'),
+                    (char)rand.Next('A', 'Z'),
+                    (char)rand.Next('0', '9'),
+                    (char)rand.Next('0', '9'),
+                    (char)rand.Next('0', '9'),
+                    (char)rand.Next('0', '9'),
+                    (char)rand.Next('A', 'Z'),
+                    (char)rand.Next('A', 'Z')
+                }),
                 Produto = produto,
                 User = user
             };
 
             await _context.produtosResgatados.AddAsync(produtoResgatado);
+            await _context.SaveChangesAsync();
+
             await _context.SaveChangesAsync();
 
             return produtoResgatado;
@@ -49,12 +68,12 @@ namespace ShopJoin.API.Data
 
         public async Task<List<ProdutoResgatado>> GetProdutosResgatadosCliente(int id)
         {
-            return await _context.produtosResgatados.Where(x => x.User.Id == id).ToListAsync();
+            return await _context.produtosResgatados.Include(x => x.Produto).Include(x => x.User).Where(x => x.User.Id == id).ToListAsync();
         }
 
         public async Task<ProdutoResgatado> GetProdutosResgatado(int id)
         {
-            return await _context.produtosResgatados.FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.produtosResgatados.Include(x => x.Produto).Include(x => x.User).FirstOrDefaultAsync(x => x.Id == id);
         }
 
     }

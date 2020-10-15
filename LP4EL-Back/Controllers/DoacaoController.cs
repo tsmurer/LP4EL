@@ -1,14 +1,13 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ShopJoin.API.Data;
 using ShopJoin.API.Dtos;
 
 
 namespace ShopJoin.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DoacaoController : ControllerBase
@@ -39,6 +38,14 @@ namespace ShopJoin.API.Controllers
         public async Task<IActionResult> GetDoacoesCliente(int id)
         {
             var data = await _repo.GetDoacoesCliente(id);
+
+            return Ok(data);
+        }
+
+        [HttpGet("hospitalDoacao/{id}")]
+        public async Task<IActionResult> GetDoacoesHospital(int id)
+        {
+            var data = await _repo.GetDoacoesHospital(id);
 
             return Ok(data);
         }
