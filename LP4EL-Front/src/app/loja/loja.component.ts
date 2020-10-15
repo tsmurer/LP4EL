@@ -26,6 +26,9 @@ export class LojaComponent implements OnInit {
   comprarProduto(idProduto) {
     this.produtoService.resgatarProduto(idProduto).subscribe((resp: any) => {
       alert("Produto adquirido");
+      this.dadosUsuario.getDados().subscribe((resp: any) => {this.pontos = resp.pontos});
+    }, error => {
+      alert("Você não tem pontos o suficiente");
     });
   }
 

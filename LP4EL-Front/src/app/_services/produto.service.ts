@@ -16,7 +16,8 @@ constructor(private httpClient: HttpClient, private checkToken: CheckTokenServic
   }
 
   resgatarProduto(idProduto) { //idproduto, iduser
-    return this.httpClient.post(this.baseUrl + 'Resgate', idProduto , this.checkToken.getId());
+    const idUser = this.checkToken.getId();
+    return this.httpClient.post(this.baseUrl + 'Resgate' + '/' + idProduto + '/' + idUser , idProduto, idUser);
   }
 
 
