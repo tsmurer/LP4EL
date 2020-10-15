@@ -16,21 +16,25 @@ namespace ShopJoin.API.Data
             _context = context;
         }
 
-        public async Task<Doacao> CadastrarDoacao(DoacaoCadastroDto dto){
+        public async Task<Doacao> CadastrarDoacao(DoacaoCadastroDto dto)
+        {
 
             var usuario = await _context.users.FirstOrDefaultAsync(x => x.Email == dto.EmailUser);
 
-            if(usuario == null){
+            if (usuario == null)
+            {
                 throw new Exception("Usuário não encontrado");
             }
 
             var hospital = await _context.hospitais.FirstOrDefaultAsync(x => x.Id == dto.IdHospital);
 
-            if(hospital == null){
+            if (hospital == null)
+            {
                 throw new Exception("Hospital não encontrado");
             }
 
-            Doacao doacao = new Doacao{
+            Doacao doacao = new Doacao
+            {
                 User = usuario,
                 Hospital = hospital,
                 Horario = dto.Horario,
@@ -44,28 +48,29 @@ namespace ShopJoin.API.Data
 
         }
 
-        public async Task<Doacao> AlterarStatus(int idDoacao, int idHospital){
+        public async Task<Doacao> AlterarStatus(int idDoacao, int idHospital)
+        {
 
-            var doacao = await _context.doacoes.FirstOrDefaultAsync(x => x.Id == idDoacao);
+            var doacao = await _context.doacoes.Include(x => x.Hospital).Include(x => x.User).FirstOrDefaultAsync(x => x.Id == idDoacao);
 
             doacao.Realizado = true;
 
-            if(doacao.Hospital.Id != idHospital){
+            if (doacao.Hospital.Id != idHospital)
+            {
                 throw new Exception("Hospital não tem relação com essa doação.");
             }
 
-            await _context.doacoes.AddAsync(doacao);
             await _context.SaveChangesAsync();
 
             var usuario = await _context.users.FirstOrDefaultAsync(x => x.Id == doacao.User.Id);
 
-            if(usuario == null){
+            if (usuario == null)
+            {
                 throw new Exception("Usuario não existe");
             }
 
             usuario.pontos = usuario.pontos + 100;
 
-            await _context.users.AddAsync(usuario);
             await _context.SaveChangesAsync();
 
             return doacao;
@@ -74,20 +79,19 @@ namespace ShopJoin.API.Data
 
         public async Task<List<Doacao>> GetDoacoesCliente(int id)
         {
-            return await _context.doacoes.Where(x => x.User.Id == id).ToListAsync();
+            return await _context.doacoes.Include(x => x.Hospital).Include(x => x.User).Where(x => x.User.Id == id).ToListAsync();;
 
         }
 
         public async Task<List<Doacao>> GetDoacoesHospital(int id)
         {
-            return await _context.doacoes.Where(x => x.Hospital.Id == id).ToListAsync();
+            return await _context.doacoes.Include(x => x.Hospital).Include(x => x.User).Where(x => x.Hospital.Id == id).ToListAsync();
 
         }
 
         public async Task<Doacao> GetDoacao(int id)
         {
-            return await _context.doacoes.FirstOrDefaultAsync(x => x.Id == id);
-
+            return await _context.doacoes.Include(x => x.Hospital).Include(x => x.User).FirstOrDefaultAsync(x => x.Id == id);
         }
 
 

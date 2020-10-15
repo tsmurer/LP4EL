@@ -47,7 +47,6 @@ namespace ShopJoin.API.Data
             await _context.produtosResgatados.AddAsync(produtoResgatado);
             await _context.SaveChangesAsync();
 
-            await _context.users.AddAsync(user);
             await _context.SaveChangesAsync();
 
             return produtoResgatado;
@@ -56,12 +55,12 @@ namespace ShopJoin.API.Data
 
         public async Task<List<ProdutoResgatado>> GetProdutosResgatadosCliente(int id)
         {
-            return await _context.produtosResgatados.Where(x => x.User.Id == id).ToListAsync();
+            return await _context.produtosResgatados.Include(x => x.Produto).Include(x => x.User).Where(x => x.User.Id == id).ToListAsync();
         }
 
         public async Task<ProdutoResgatado> GetProdutosResgatado(int id)
         {
-            return await _context.produtosResgatados.FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.produtosResgatados.Include(x => x.Produto).Include(x => x.User).FirstOrDefaultAsync(x => x.Id == id);
         }
 
     }
