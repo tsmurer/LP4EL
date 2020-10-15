@@ -6,7 +6,7 @@ using ShopJoin.API.Dtos;
 
 namespace ShopJoin.API.Controllers
 {
-    // [Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DoacaoController : ControllerBase

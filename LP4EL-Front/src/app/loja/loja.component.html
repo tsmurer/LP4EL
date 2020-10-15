@@ -10,7 +10,7 @@
       <img class="item__img" src="../../assets/no-image.png" alt="">
       <span>{{item.name}}</span>
       <span>{{item.pontos + ' pontos'}}</span>
-      <a href="#"><span (click)="comprarProduto(item.id)" class="item__botao-comprar">Comprar</span></a>
+      <span (click)="comprarProduto(item.id)" class="item__botao-comprar">Comprar</span>
     </div>
   </div>
 </div>

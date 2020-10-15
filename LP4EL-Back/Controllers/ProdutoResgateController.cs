@@ -5,7 +5,7 @@ using ShopJoin.API.Data;
 
 namespace ShopJoin.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("[controller]")]
     [ApiController]
     public class ProdutoResgateController : ControllerBase

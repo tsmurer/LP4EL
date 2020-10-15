@@ -19,6 +19,7 @@ export class LojaComponent implements OnInit {
 
   ngOnInit() {
     this.puxarProdutos();
+    console.log(this.itensLista);
     this.dadosUsuario.getDados().subscribe((resp: any) => {this.pontos = resp.pontos});
   }
 
