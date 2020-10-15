@@ -29,4 +29,8 @@ export class LojaComponent implements OnInit {
     });
   }
 
+  comprarProduto(){
+    alert("foi!");
+  }
+
 }
