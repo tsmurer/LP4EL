@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DoacaoService } from '../_services/doacao.service';
 
 @Component({
   selector: 'app-avalidar',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AvalidarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private doacaoService: DoacaoService) { }
+
+  doacoes: any = [];
 
   ngOnInit() {
+    this.puxarDoacoes();
+  }
+
+  puxarDoacoes() {
+    this.doacaoService.puxarDoacoesHospital()
+      .subscribe(
+        (resp: any) => {
+          console.log(resp);
+          this.doacoes = resp;
+        }
+        )
   }
 
 }

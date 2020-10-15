@@ -1,3 +1,15 @@
 <div class="lista-doacoes">
-  
+  <h3>Doações a validar:</h3>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Doador</th>
+      <th>Status</th>
+    </tr>
+    <tr *ngFor="let doacao of this.doacoes">
+      <td>{{doacao.id}}</td>
+      <td>{{doacao.user}}</td>
+      <td>{{doacao.realizado === true ? 'OK' : 'VALIDAR'}}</td>
+    </tr>
+  </table>
 </div>
