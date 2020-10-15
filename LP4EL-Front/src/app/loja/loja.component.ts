@@ -29,12 +29,13 @@ export class LojaComponent implements OnInit {
     });
   }
 
-  comprarProduto(pontos){
-    if(this.pontos < pontos){
-      alert("Seu saldo é insuficiente!");
-    }else{
-      alert("Você comprou o item!");
-    }
+  comprarProduto(idProduto){
+    this.produtoService.resgatarProduto(idProduto).subscribe((resp: any) => {
+      alert("Produto adquirido");
+      this.dadosUsuario.getDados().subscribe((resp: any) => {this.pontos = resp.pontos});
+    }, error => {
+      alert("Você não tem pontos o suficiente");
+    });
       
   }
 
