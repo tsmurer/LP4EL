@@ -13,6 +13,8 @@ namespace ShopJoin.API.Data
 
         Task<List<Doacao>> GetDoacoesCliente(int id);
 
+        Task<List<Doacao>> GetDoacoesHospital(int id);
+
         Task<Doacao> GetDoacao(int id);
 
     }

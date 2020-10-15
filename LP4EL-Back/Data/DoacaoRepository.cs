@@ -78,6 +78,12 @@ namespace ShopJoin.API.Data
 
         }
 
+        public async Task<List<Doacao>> GetDoacoesHospital(int id)
+        {
+            return await _context.doacoes.Where(x => x.Hospital.Id == id).ToListAsync();
+
+        }
+
         public async Task<Doacao> GetDoacao(int id)
         {
             return await _context.doacoes.FirstOrDefaultAsync(x => x.Id == id);
